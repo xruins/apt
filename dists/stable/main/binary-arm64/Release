@@ -1,0 +1,5 @@
+Component: main
+Origin: MyPersonalRepo
+Label: MyRepo
+Architecture: arm64
+Description: My automated apt repository

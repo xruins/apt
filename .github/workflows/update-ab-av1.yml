@@ -69,4 +69,31 @@ jobs:
           echo "Extracting archive..."
           zstd -dc ab-av1.tar.zst | tar -xv
           
-          # 解凍されたバイナリに実行権限を
+          # 解凍されたバイナリに実行権限を付与
+          # (tarの中身がフォルダではなくバイナリ単体であることを想定)
+          chmod +x ab-av1
+
+          # 5. debパッケージ作成 (nfpm)
+          echo "Building .deb package..."
+          export VERSION=$VERSION
+          export ARCH=amd64
+          nfpm pkg --packager deb --target "ab-av1_${VERSION}_amd64.deb"
+          
+          # 6. aptリポジトリに追加 (reprepro)
+          echo "Adding to repository..."
+          reprepro includedeb stable "ab-av1_${VERSION}_amd64.deb"
+
+          # 7. 後始末 (一時ファイル削除)
+          rm ab-av1 ab-av1.tar.zst "ab-av1_${VERSION}_amd64.deb"
+
+      # GitHub Pages へのデプロイ
+      - name: Deploy to GitHub Pages
+        if: env.SKIP_DEPLOY != 'true'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          keep_files: true
+          # 不要なファイルを除外
+          exclude_assets: '.github,nfpm.yaml,private.key,.gitattributes'

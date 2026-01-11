@@ -1,0 +1,13 @@
+name: "ab-av1"
+arch: "${ARCH}"
+platform: "linux"
+version: "${VERSION}"
+section: "video"
+priority: "optional"
+maintainer: "Your Name <you@example.com>"
+description: "AV1 encoding helper tool (Unofficial build)"
+homepage: "https://github.com/alexheretic/ab-av1"
+license: "MIT"
+contents:
+  - src: "./ab-av1"
+    dst: "/usr/bin/ab-av1"

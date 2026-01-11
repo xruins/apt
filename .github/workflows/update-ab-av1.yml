@@ -2,11 +2,11 @@ name: Update ab-av1
 
 on:
   schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
+    - cron: '0 0 * * *' # 毎日 AM 0:00 (UTC) に実行
+  workflow_dispatch: # 手動実行用
 
 permissions:
-  contents: write
+  contents: write # gh-pagesへのpushに必要
 
 jobs:
   build-and-deploy:
@@ -15,6 +15,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # GPG鍵のインポート (Secretsに登録した GPG_PRIVATE_KEY を使用)
       - name: Import GPG Key
         uses: crazy-max/ghaction-import-gpg@v6
         with:
@@ -22,51 +23,50 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
 
+      # 必要なツール (reprepro, nfpm, zstd) のインストール
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y reprepro
+          sudo apt-get install -y reprepro zstd
+
+          # nfpm のインストール
           echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list
           sudo apt-get update
           sudo apt-get install -y nfpm
 
+      # メイン処理: バージョンチェック -> ダウンロード -> 解凍 -> パッケージ化 -> リポジトリ登録
       - name: Check version and Build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # 1. 最新バージョンのタグを取得 (例: v0.10.3)
           LATEST_TAG=$(gh release list --repo alexheretic/ab-av1 --limit 1 | awk '{print $1}')
+          # "v" を取り除く (0.10.3)
           VERSION=${LATEST_TAG#v}
+          
+          echo "Latest version found: $VERSION"
 
-          echo "Latest version: $VERSION"
-
+          # 2. 既存リポジトリに既に含まれているかチェック
+          # 初回実行時など db ディレクトリがない場合はスキップ
           if [ -d "db" ]; then
-            if reprepro list stable ab-av1 | grep -q "$VERSION"; then
-              echo "Version $VERSION is already in the repo. Exiting."
-              echo "SKIP_DEPLOY=true" >> $GITHUB_ENV
-              exit 0
-            fi
+             if reprepro list stable ab-av1 | grep -q "$VERSION"; then
+               echo "Version $VERSION is already in the repo. Exiting."
+               echo "SKIP_DEPLOY=true" >> $GITHUB_ENV
+               exit 0
+             fi
           fi
 
-          echo "New version found. Building..."
+          echo "New version detected. Starting build process..."
 
-          gh release download "$LATEST_TAG" --repo alexheretic/ab-av1 --pattern '*linux-x86_64*' --output ab-av1
-          chmod +x ab-av1
+          # 3. アセットのダウンロード (musl版, zstd圧縮)
+          # パターン: x86_64 かつ linux かつ musl かつ tar.zst
+          gh release download "$LATEST_TAG" \
+            --repo alexheretic/ab-av1 \
+            --pattern '*x86_64*linux*musl*.tar.zst' \
+            --output ab-av1.tar.zst
 
-          export VERSION=$VERSION
-          export ARCH=amd64
-          nfpm pkg --packager deb --target "ab-av1_${VERSION}_amd64.deb"
-
-          reprepro includedeb stable "ab-av1_${VERSION}_amd64.deb"
-          rm ab-av1 "ab-av1_${VERSION}_amd64.deb"
-
-          # For arm64, repeat with the aarch64 asset and ARCH=arm64.
-
-      - name: Deploy to GitHub Pages
-        if: env.SKIP_DEPLOY != 'true'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-          publish_branch: gh-pages
-          keep_files: true
-          exclude_assets: '.github,nfpm.yaml,private.key,conf'
+          # 4. 解凍 (zstd -> tar)
+          echo "Extracting archive..."
+          zstd -dc ab-av1.tar.zst | tar -xv
+          
+          # 解凍されたバイナリに実行権限を

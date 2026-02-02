@@ -4,44 +4,44 @@ Hash: SHA512
 Origin: MyPersonalRepo
 Label: MyRepo
 Codename: stable
-Date: Sun, 01 Feb 2026 00:08:38 UTC
+Date: Mon, 02 Feb 2026 00:07:48 UTC
 Architectures: amd64 arm64
 Components: main
 Description: My automated apt repository
 MD5Sum:
- aef58168ea1430607454faa339705be4 494 main/binary-amd64/Packages
- dc9241d50f780210866cfc59e734546a 382 main/binary-amd64/Packages.gz
+ 96c55f52778f8af90ef41d8b85dbe7b9 494 main/binary-amd64/Packages
+ ef0a37f506234a6c101cd527b194de59 379 main/binary-amd64/Packages.gz
  c931f463eecb7b7dfea361c0955bb0e9 114 main/binary-amd64/Release
  d41d8cd98f00b204e9800998ecf8427e 0 main/binary-arm64/Packages
  7029066c27ac6f5ef18d660d5741979a 20 main/binary-arm64/Packages.gz
  3879a1104203e660a91555f682f2d8af 114 main/binary-arm64/Release
 SHA1:
- 4a81b228031d11821e9b420734e2db18b67f63a2 494 main/binary-amd64/Packages
- 48126e714652883e77c3b243936267a365e81877 382 main/binary-amd64/Packages.gz
+ 1d983dcfa23647adfc017cfb1a96f3556a068844 494 main/binary-amd64/Packages
+ ddf5fe316ff4ad1d73f32346898d024a2c69ab78 379 main/binary-amd64/Packages.gz
  2634eb794c779785a5d3e8fcb67aad070d952d32 114 main/binary-amd64/Release
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-arm64/Packages
  46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-arm64/Packages.gz
  b9a4bf2f8184b389531957c45c3886fcdabb74b5 114 main/binary-arm64/Release
 SHA256:
- a10a3c03a31d1b93cbf77d555556542046974492fa7fb07e47c147ba960d9fe9 494 main/binary-amd64/Packages
- fa88d8262718245ee722d7220894a786ceb750c54b06e22c8a2fda92418503bd 382 main/binary-amd64/Packages.gz
+ 0ce4c121fe73e4cd3a2a89682162c9c31f972e87ef305a638915434b8c40210e 494 main/binary-amd64/Packages
+ b74329488954f8688aa14effe3b7b66c65ae43a108bd0cdf9300a58f6e262bb2 379 main/binary-amd64/Packages.gz
  be0876e62c3ece519f1551932eb1e9f90b495cef9a96cde53af66e289249fac1 114 main/binary-amd64/Release
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-arm64/Packages
  59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-arm64/Packages.gz
  e516d3fb925e0d96a5efb2bfd7717e8d3003a66da09e9b6777e18d2b8b5529bb 114 main/binary-arm64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEXD/sZRS5oziP9fgr/Y5C8vazCLwFAml+mYYACgkQ/Y5C8vaz
-CLzwYA//XI2BxluEgGpNwgYPkVKvV+cr/UhTwO4Y7gf+WgzjzMMvHv1HmccmBckk
-Rl8UVps+P+9s/S79orj9v33VQtJXLoXKK5XOaavBngaBKWec7GimvlxW6ijmmw4t
-uGQIDdxMnhZ3Mv/61HfbxdJDtJXd6cFnucYIrGjyjQrbmo8Xv4Si+NBSTxGazkFB
-RqdZPjCasQp7/7HRDsDCkXdt74QdbPanjFs0umJhiLvGTBWbFf3NviPyQ6gBGnOA
-LZBHn4HJCDVftrb31PFVYcRK1oFxonIVCb2/Q5gEniT5ll4P9YGfENvuTWNP3W5K
-6xN4KuBRJBuLhzGle5m3qdahjo2mLlzEE6xIUPd+JL8xD0ps9day+C+GK8HB3+rO
-E1+K/MTJAsccyme2ljFTflKEfGZrMAgC+VplJhjGG0gMzn8i8Ly8+hviyYjcVFTR
-O0r/PqQnFD/6xAwn/w8rsS8lErIauSOuwipszraS9ModrQavVPquPU5f246LkcxR
-bxxiKh3I5rkItZAq1plVh0Jbt4/6OpT/4EuOcwaTqF19JgkXsW/fmf0jpkDJariJ
-jVchfRvUkU+6Rb5o20cz6W4r6wfbI0EcfT3ftfq0o3BVnvSiDzZ0rdTlvXKrClfJ
-cITmVgoAtNngc5WhZMjnhnNU2tW57+yGjAt/f14RCmUqFTairWY=
-=SScu
+iQIzBAEBCgAdFiEEXD/sZRS5oziP9fgr/Y5C8vazCLwFAml/6tQACgkQ/Y5C8vaz
+CLxfBg/9Gwh3FsTKPXA6v3NmnD6xmqGesHM3pM9gWImKzVPWmzdjcelBVBKuYbAz
+de8tdxiLclyAzyqtoUNtawjtOoNOuxvDL24I2MYWAhQcJnWqr3ji69xvKYEQGD7w
+hHoVZM9QsTx8CY6sv3uqpzySSTiVJcVC7BlI0mQYuQv33BEswsxA82BB3P2ecoZw
+pDtyRmGVMSsV3u7l35ih6QAVWw2VGE4OJXEe3fA1wk4j9aX0vYWEU4IoxwVLyzBg
+9L18Dxm/cC16M1bNoApncPgoPUr8EORig2W0MKI2en9qlcivuUD6XNdhg/SR9CJH
+Hef2CWjYwKFp+q+ZJGJiRWz3ZnwI6UT4hqfTjsT13UWGv25D5Xfx42Hg3yz/pNNy
+t6QCv9jo714xGev5xzl4wQxt/JU3ZecFjuJJagyZ10pUDJFVRTsRn9DUBCm3uHAc
+AZPLw8o/NhHQRGzFtHL3j3n0f42Dae9wTiQmGhltcwbxlNlPrOcnC9rVWLY1TgiX
+H5qJgRKvGuDOWCRoiMHEGUUKFA8gyUKy5W0k7ZEM5DmBwZPWUl0gPIInlaUcCmEk
+emMs67f/Z1gouWJOj1M193/Gjr/LFi3vrbdCdNg/TIt1Huej5VZHXI26d2j/nsqE
+V8ww1xGH7Y88Kw/1iKTKXv8LQkO5A4N/PYsnbcZmph9jWmrT+IE=
+=Rjvd
 -----END PGP SIGNATURE-----

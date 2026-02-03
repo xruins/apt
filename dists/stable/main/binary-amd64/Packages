@@ -8,9 +8,9 @@ Homepage: https://github.com/alexheretic/ab-av1
 Priority: optional
 Section: video
 Filename: pool/main/a/ab-av1/ab-av1_0.10.4_amd64.deb
-Size: 1230806
-SHA256: 6b5598c7522867c64df89fc8a97ce50c4234163aae87d95809c4b40857bc89b3
-SHA1: 25f94803e93d81aee9b85eb78fa82eb4818a3322
-MD5sum: 19b7eeddd6853e01136ff387d914ee9b
+Size: 1230808
+SHA256: 6f9a3b0dad210c9d7b2f10c49868a1aa50e691add5bf024812a6e70e531c430b
+SHA1: a967b77d0257885efba8a9bf070a6a542c58af57
+MD5sum: fa7ea9291055617de10715bef6503447
 Description: AV1 encoding helper tool (Unofficial build)
 

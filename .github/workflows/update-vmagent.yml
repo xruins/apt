@@ -3,6 +3,9 @@ name: Update vmagent
 on:
   schedule:
     - cron: '30 0 * * *'
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:

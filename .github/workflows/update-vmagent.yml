@@ -1,0 +1,98 @@
+name: Update vmagent
+
+on:
+  schedule:
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Import GPG Key
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y reprepro
+          echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list
+          sudo apt-get update
+          sudo apt-get install -y nfpm
+
+      - name: Check version and Build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          LATEST_TAG=$(gh release view --repo VictoriaMetrics/VictoriaMetrics --json tagName --jq .tagName)
+          VERSION=${LATEST_TAG#v}
+
+          echo "Latest version: $VERSION"
+
+          if [ -d "db" ]; then
+            if reprepro list stable vmagent | grep -q "$VERSION"; then
+              echo "Version $VERSION is already in the repo. Exiting."
+              echo "SKIP_DEPLOY=true" >> $GITHUB_ENV
+              exit 0
+            fi
+          fi
+
+          ASSET_AMD64=$(gh release view "$LATEST_TAG" --repo VictoriaMetrics/VictoriaMetrics --json assets --jq '.assets[].name' | grep -E '^vmutils-linux-amd64-v.*\.tar\.gz$' | head -n1)
+          ASSET_ARM64=$(gh release view "$LATEST_TAG" --repo VictoriaMetrics/VictoriaMetrics --json assets --jq '.assets[].name' | grep -E '^vmutils-linux-arm64-v.*\.tar\.gz$' | head -n1)
+
+          if [ -z "$ASSET_AMD64" ] || [ -z "$ASSET_ARM64" ]; then
+            echo "Unable to find vmutils assets for amd64/arm64 in release $LATEST_TAG"
+            exit 1
+          fi
+
+          build_arch() {
+            local arch=$1
+            local asset=$2
+
+            gh release download "$LATEST_TAG" --repo VictoriaMetrics/VictoriaMetrics --pattern "$asset"
+
+            local tmpdir
+            tmpdir=$(mktemp -d)
+            mkdir -p "$tmpdir"
+            tar -xzf "$asset" -C "$tmpdir"
+
+            local bin
+            bin=$(find "$tmpdir" -type f -name vmagent -perm -111 | head -n1)
+            if [ -z "$bin" ]; then
+              echo "vmagent binary not found inside $asset"
+              exit 1
+            fi
+
+            cp "$bin" ./vmagent
+            chmod +x ./vmagent
+
+            ARCH="$arch" VERSION="$VERSION" nfpm pkg --config nfpm-vmagent.yaml --packager deb --target "vmagent_${VERSION}_${arch}.deb"
+            reprepro includedeb stable "vmagent_${VERSION}_${arch}.deb"
+
+            rm -rf "$tmpdir" "$asset" "vmagent_${VERSION}_${arch}.deb" ./vmagent
+          }
+
+          build_arch amd64 "$ASSET_AMD64"
+          build_arch arm64 "$ASSET_ARM64"
+
+      - name: Deploy to GitHub Pages
+        if: env.SKIP_DEPLOY != 'true'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          keep_files: true
+          exclude_assets: '.github,nfpm.yaml,nfpm-vmagent.yaml,private.key,conf'

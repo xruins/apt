@@ -69,9 +69,9 @@ jobs:
             tar -xzf "$asset" -C "$tmpdir"
 
             local bin
-            bin=$(find "$tmpdir" -type f -name vmagent -perm -111 | head -n1)
+            bin=$(find "$tmpdir" -type f -name vmagent-prod -perm -111 | head -n1)
             if [ -z "$bin" ]; then
-              echo "vmagent binary not found inside $asset"
+              echo "vmagent-prod binary not found inside $asset"
               exit 1
             fi
 

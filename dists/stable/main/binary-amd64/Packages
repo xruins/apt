@@ -9,8 +9,8 @@ Priority: optional
 Section: video
 Filename: pool/main/a/ab-av1/ab-av1_0.10.4_amd64.deb
 Size: 1230808
-SHA256: 876ca95d33933efd50e5ead971bee87c0f839a6e5e203cac38b7db1f5ff7e7ce
-SHA1: 7f74aedc8b6ed0c4cf0b711bac518f26935b7fd3
-MD5sum: 48706ae19e3ba68df46b85fe16a002f1
+SHA256: 98447c7ee6bb7d8db6d8211e364c64e195a7ebb7fd29a9cab03b5440f90eae8a
+SHA1: 5a27b79e5f82f511ecc5e9271e11ec5921856620
+MD5sum: 2321826e7b18810e919bdcaf77d24bd1
 Description: AV1 encoding helper tool (Unofficial build)
 

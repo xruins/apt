@@ -1,0 +1,15 @@
+Package: vmagent
+Version: 1.139.0
+Architecture: arm64
+Maintainer: Repo Maintainer <you@example.com>
+Installed-Size: 41314
+Homepage: https://github.com/VictoriaMetrics/VictoriaMetrics
+Priority: optional
+Section: net
+Filename: pool/main/v/vmagent/vmagent_1.139.0_arm64.deb
+Size: 19836350
+SHA256: 71bca283f9e97cda6d0062820b6724a74cba7507c7caa7c6232f0cc72ead77b8
+SHA1: 546b266be631acf9659d5b75d7f145ad590d0738
+MD5sum: a8924c9516d8c79a6fa3d2089a719666
+Description: VictoriaMetrics vmagent (Unofficial build)
+

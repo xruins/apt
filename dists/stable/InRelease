@@ -4,44 +4,44 @@ Hash: SHA512
 Origin: MyPersonalRepo
 Label: MyRepo
 Codename: stable
-Date: Mon, 27 Apr 2026 00:16:02 UTC
+Date: Mon, 27 Apr 2026 01:12:29 UTC
 Architectures: amd64 arm64
 Components: main
 Description: My automated apt repository
 MD5Sum:
- 6ac7520868de9d483e0cbbc23b39a402 481 main/binary-amd64/Packages
- ea4739078f06da3cd70c5e1c5523e116 369 main/binary-amd64/Packages.gz
+ d942f3b74b01b58d8d39e1e0962cbd91 504 main/binary-amd64/Packages
+ f1d28715c1cb713e37b1fafd523ef8ec 366 main/binary-amd64/Packages.gz
  c931f463eecb7b7dfea361c0955bb0e9 114 main/binary-amd64/Release
- d41d8cd98f00b204e9800998ecf8427e 0 main/binary-arm64/Packages
- 7029066c27ac6f5ef18d660d5741979a 20 main/binary-arm64/Packages.gz
+ fc89835963fe8f588c2a53077a2aad7b 504 main/binary-arm64/Packages
+ b8fd78e61aeb1d900a4b41d07bee5284 362 main/binary-arm64/Packages.gz
  3879a1104203e660a91555f682f2d8af 114 main/binary-arm64/Release
 SHA1:
- 668e766623189f4e0b96e84349ca4cfa63ffa5ef 481 main/binary-amd64/Packages
- 4f90d65eb8e66af2e84011f04b98362fb21de1ee 369 main/binary-amd64/Packages.gz
+ d1c9cf485a8cb1e3c935709c6f35755a480fad43 504 main/binary-amd64/Packages
+ bd149db5efb9ad3159fd74d675f2eb619b7749ef 366 main/binary-amd64/Packages.gz
  2634eb794c779785a5d3e8fcb67aad070d952d32 114 main/binary-amd64/Release
- da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-arm64/Packages
- 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-arm64/Packages.gz
+ 866f4a5b73a9d76e2ca3393df9d2da6713d490f1 504 main/binary-arm64/Packages
+ fca775aaf8648704889a1c395b5ec04bf8dee351 362 main/binary-arm64/Packages.gz
  b9a4bf2f8184b389531957c45c3886fcdabb74b5 114 main/binary-arm64/Release
 SHA256:
- de2cb5be141fe26b78c54a1d4a16dff228bf7edf85861ae88322383bb64452fa 481 main/binary-amd64/Packages
- 5e69e161e878e0a3ec4b07d43822b292f541b8819f77adce4c315336a55f31b2 369 main/binary-amd64/Packages.gz
+ 4f544282b53434203809f2b0d0c528df40f2af8a5fbe029159c4e79e21bffda6 504 main/binary-amd64/Packages
+ da630fd4fa8e32405a4322a69e01d3f61a5dafb47ba1e0063c887d928a3593e9 366 main/binary-amd64/Packages.gz
  be0876e62c3ece519f1551932eb1e9f90b495cef9a96cde53af66e289249fac1 114 main/binary-amd64/Release
- e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-arm64/Packages
- 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-arm64/Packages.gz
+ 0b0da1a5b835bd86a6dbd6cb79cb73be8359af8ed975114f04cfa28e072958a1 504 main/binary-arm64/Packages
+ d63fc6b89ce6ed9ef9ade75aad5c075b87f106d514447e49d65525c27eed5177 362 main/binary-arm64/Packages.gz
  e516d3fb925e0d96a5efb2bfd7717e8d3003a66da09e9b6777e18d2b8b5529bb 114 main/binary-arm64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEXD/sZRS5oziP9fgr/Y5C8vazCLwFAmnuqsIACgkQ/Y5C8vaz
-CLz3AA//dHv2uxmsqIVMLPHD02khiUsGq8sz9yjBnsL1VmIFlMWjNikRGt1sVbZE
-zzkYYuhAFPka14Pk6PyqSufu0AqmwmKZLIxH+x29r37MnhYx4RKLJ3sSnkpqxfsQ
-prfWY6xEG4lCW4T/hyh8uwvF/t78mzdyBxa1pVsrSjrLvuNI3g/TUyk/Igkoz4Hq
-kZ0ZOTwDPrabf2kdTItHxcfaxjdfTHYjtZWq+bUxBr55A32RicTD6GPwF+s1fz7H
-S1dfN4Eb52094W/QzhCRuv4xWWEz5k03DtSvN8FDWH3qhZ+nE1GigfJBsE/vL/lh
-Lv+f63ZdWCKEqN5xz9HmwtppWo665UPM0hAGwW2NTiqRnXHVSv8AY1cLqoqgs6IU
-mLuVppqh1Qihfmfqm2sbPTkOX1ayaqzMSqn9PJ7LcQzrXtr7wb6YAXWdqCsuaqDT
-tPjJ0X8uE26Qp0yqJ1cG6KggfmwWHUji2vlDX0A2pEbLnu5JszU4LQlwcLmGAdu4
-SVIk/VRGZ0vOpba7YpMYaBq6Bh3RkygBpeYsXX2hJ+UEITXFMZelpgrSRlInEOwY
-w5FnvbBklG7UukurqEF3o7nWEcucvV0Mt276Qxc74R5glwD9ImDUZADyFGjBNkpQ
-C4L8U+3Kp+gzppdL9whpFG3qPI9uODNrE1MZjLBJ9iC6WZLK6VE=
-=vkH8
+iQIzBAEBCgAdFiEEXD/sZRS5oziP9fgr/Y5C8vazCLwFAmnut/0ACgkQ/Y5C8vaz
+CLySIhAAnAzHCJ2ei692VxvlP+gsPJoyDFeduszmAtjAN17tz9cwa1ao/zBbCg7h
+Hx6MPR4XmzSHb3U3A61MfiarGaN1AtwCEAWEoW5IvJZf86eEla8z8F1NxC22c9Cr
+2s5gzNFFs4OwsrZ0b8bpkMTS3f0yuFbsD20j4JgzWhEp/KgNbY5pXI+Rl7mB2TRr
+Nhbf+6sjj6JM2588Vq9RYAmjLpVnI5IRt2V8tL/WcVViPhlTXuU67c7lEMSsabBZ
+bPA0fo/JvcXyHPW/EPODM8JnBEB2Yftqi1qcKdu24+t9apsgk48wrh6lj7RP3MgO
+aBhBk9eaDqiDk/VFUchOqHVGlQxs6VEOayElSuVj/QGu1k3Jv/kQOrK1cl17kR+2
+wGZ3VKoM424J1wGhlzcqFUpWYevNo02EtPJzIQZhDd2R/mWbV/JluMUoLo+JVbZi
+jr/C6RRoeYTUC8Zauyj1zqDyOyBkybmrrgxRrpG7DRO8xkGC0yy7U3v33oTAImSg
+yFVF8soufwceaJeOnECs4AVSA2Kj1XXhnp1b6rWalyN48LWSLWVi4cVUf1JyxspQ
+Nv7cLI8SSrozLBB9umde6Cmq1bX0kCqscBMYUqv/eevEx3nZ1iA/xZ/DuOnxPb3R
+UwX2XszMBb73YYANNDQz5h/AXkwOOHxA6U7ey+VO7vtr4JjIvQU=
+=ceK3
 -----END PGP SIGNATURE-----

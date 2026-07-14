@@ -4,44 +4,44 @@ Hash: SHA512
 Origin: MyPersonalRepo
 Label: MyRepo
 Codename: stable
-Date: Tue, 14 Jul 2026 00:18:07 UTC
+Date: Tue, 14 Jul 2026 00:59:41 UTC
 Architectures: amd64 arm64
 Components: main
 Description: My automated apt repository
 MD5Sum:
- 9a994e45c8b124c03fd2c7d79f19e50f 481 main/binary-amd64/Packages
- 6d33b2fe1aa4bf67d05b034111ca60c1 369 main/binary-amd64/Packages.gz
+ 3e7114299aee5c15b369b4f8168e9f6b 504 main/binary-amd64/Packages
+ 5df8e84230d0c67275922708d4ff7c07 362 main/binary-amd64/Packages.gz
  c931f463eecb7b7dfea361c0955bb0e9 114 main/binary-amd64/Release
- d41d8cd98f00b204e9800998ecf8427e 0 main/binary-arm64/Packages
- 7029066c27ac6f5ef18d660d5741979a 20 main/binary-arm64/Packages.gz
+ 38641d48d8029517a8d00a9ac56370c6 504 main/binary-arm64/Packages
+ e626a9cd1a16b1d3959cf8b58447a534 364 main/binary-arm64/Packages.gz
  3879a1104203e660a91555f682f2d8af 114 main/binary-arm64/Release
 SHA1:
- 10168664c8a0a62b5b33ddd5b07f822983f7ef88 481 main/binary-amd64/Packages
- 4cc7139708eff5e5404f80758d11401488aa03af 369 main/binary-amd64/Packages.gz
+ 511c2c37cdae71c01b5a7569eea87006fbca2429 504 main/binary-amd64/Packages
+ 0482d83f91fab3597078d019ab1de20f72f31f62 362 main/binary-amd64/Packages.gz
  2634eb794c779785a5d3e8fcb67aad070d952d32 114 main/binary-amd64/Release
- da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-arm64/Packages
- 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-arm64/Packages.gz
+ 5d1af79ef11b7bb698cb800a0b6121cbcd5ff881 504 main/binary-arm64/Packages
+ 26cc329fcda71b3593bc6c5e5053ca5cc709a20e 364 main/binary-arm64/Packages.gz
  b9a4bf2f8184b389531957c45c3886fcdabb74b5 114 main/binary-arm64/Release
 SHA256:
- 109f9f45e5bef8d6219a7ab169c3e30574a69bc99db499583d5ccacaa0eae2b3 481 main/binary-amd64/Packages
- 59e394c07dc1e14dea4bdceb997314613296d247ac320fbc253eb5c8fd1ee543 369 main/binary-amd64/Packages.gz
+ 49979c64964dc60de0812d0f0b7be4225293c66c2f06fb7845a9a1a269832bd1 504 main/binary-amd64/Packages
+ 5c3562d45b77932edee71aef6335204c02f33c4c220ae19404d0c292f1a0eb85 362 main/binary-amd64/Packages.gz
  be0876e62c3ece519f1551932eb1e9f90b495cef9a96cde53af66e289249fac1 114 main/binary-amd64/Release
- e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-arm64/Packages
- 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-arm64/Packages.gz
+ 6c5f690e408ad7d2f9c8518903e23d37ef0f53e8d58e24638369e09015912958 504 main/binary-arm64/Packages
+ 2dee109c2a40e672fc0777a475b2e53fddb47401130a45dae57ca0bb44115bd3 364 main/binary-arm64/Packages.gz
  e516d3fb925e0d96a5efb2bfd7717e8d3003a66da09e9b6777e18d2b8b5529bb 114 main/binary-arm64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEXD/sZRS5oziP9fgr/Y5C8vazCLwFAmpVgD8ACgkQ/Y5C8vaz
-CLyIaQ//eEkaI9sSjV7QtJpsVye8CJfZYWu1OJFkfXi5LJmrJtrx2h/WK+ybI7nT
-8cq0lDbE2DCFRV24bIF7PhaV05xPtpaXAs13pZ6CUH3B9T6ZK+IqPKpKHYH7Xg10
-07gB48INOKLHrMVhjuNqb6dFNFd2CD1cYXKR2cl66ZcdMDX+b16FXKSDHHpsrOi4
-f66woLMYp6+LpvgFTs4YB5VNeiXutY+g2r4pqei7Gs671p5y87ZVX1IyaKX6V0nM
-tjQU9z6PYnSeLnft8hj+cBkZGrdoZhDh5Udi2NwcjrDoTBtcwZkCv2ZzP6EsdJ7r
-M90+sHky0V17bOI68EI9Q3FG6Olhyrj7Dykuor7tjEFr4wb72Be/7puJZerg66XE
-ZKJyEWnx1hsjcs4L0VLt94Gew+aJbszTNeNzMo6BT57428dAM+KzO4zNXvSytVxb
-aj7KCNsSRZVS2YYcu3f+NXS2RbR1hQj1CmE7lrHq4nbk9fG3K/XleMGKng2TTdof
-wd4FDtC2FBD0/HJTL8YFLiMnp02ZyCzwS+9JuPReWY19J5HpoLDspA7oWioIJSiL
-UDDDdwLEJJut/62hjE+RNjLkTHBdE+OoQarA/mn9pOxwS2tEY4i68ay1rbePEmWF
-qR0XQu+d5qAhDChK30jTZzsM598ggJtl+b3iy7lb4NC23kePFrQ=
-=8sa4
+iQIzBAEBCgAdFiEEXD/sZRS5oziP9fgr/Y5C8vazCLwFAmpVif0ACgkQ/Y5C8vaz
+CLyUsA/9FbAOh8mSj06O0cTwcQhyEq1hzYKplWpIZswg04Qfiwmz55mjOqiUTbfH
+y01VvTy5Zl/JfvdfG/TKgip9IKWxEtD7z8ULcI3Yoqm6d80drxde8QN4jgXyidND
+Ogy5HNHHkytX1Bt72zAebdcUMg/iHfmDhF+yzXwIReKnstB4jkt7g/P4V0Z5Vvgm
+44CEDElmxTTiGWwda0K44CsdMuQAUbA3ACVuJ0pKDDOHjwzG5DUNEYvf7O0f+ohD
+oOw0OGWgdoNLPlxndMwcQnM6Pi+tr/ISc9Lj/2Bn+bPwMW4eFYphGhb1JGz//Xb7
+UCfktFMfZksXm6dGyLif+LnGthFvqE/hl4sczPmuy3w7JrLRLf3LOQGnqtXq/zue
+hgQ53IjVBcr4fN2EB8eM836t/NqezeJZGb2bq35yzUBbR7xkNASz9V6fOZgazISV
+C9RHKltHQ72gerVcF85LWdGkTqJVJjCHonpDM2vmQSjN+zj1HQn7CV+nO0OpjNwz
+ORHr4si78nhna5xV+DPobCFGrokoaVamhF1gg3tSNJUn5dV1m1Qqt8ExxydIrw5S
+G50toXySkglEmseapCyP6fZGvUKJVWLciocX/U6XyKsr7tfUkmetSXBf0+z3oXrc
+ainq6/E0mf9d7rTpWUkb+6+6O9J+evYjSp3M0FvItqJa1l2c4oo=
+=PYyg
 -----END PGP SIGNATURE-----

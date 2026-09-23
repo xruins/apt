@@ -1,15 +1,15 @@
-Package: ab-av1
-Version: 0.11.7
+Package: vmagent
+Version: 1.152.0
 Architecture: amd64
-Maintainer: Your Name <you@example.com>
-Installed-Size: 2461
-Homepage: https://github.com/alexheretic/ab-av1
+Maintainer: Repo Maintainer <you@example.com>
+Installed-Size: 48655
+Homepage: https://github.com/VictoriaMetrics/VictoriaMetrics
 Priority: optional
-Section: video
-Filename: pool/main/a/ab-av1/ab-av1_0.11.7_amd64.deb
-Size: 1240434
-SHA256: a4063d3b219d17fd01606c1d8b238b17dc1ba1e44d0ae9cf8c54f9cd7cc7ac38
-SHA1: 28c2fc96a67b00a3077519802219a2a7834b35ff
-MD5sum: 192db169d752246a942d7c1ec1687e40
-Description: AV1 encoding helper tool (Unofficial build)
+Section: net
+Filename: pool/main/v/vmagent/vmagent_1.152.0_amd64.deb
+Size: 23491648
+SHA256: 9cb96db28fa1d921d9e7b9cdae86a2ba7d0ef392e90d6e707250d3496281a98b
+SHA1: eceee2660ab44c0857da102576833e73946b36b4
+MD5sum: de55ff2e61965ff9ab1689d77e048f44
+Description: VictoriaMetrics vmagent (Unofficial build)
 

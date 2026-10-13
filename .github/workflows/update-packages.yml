@@ -1,0 +1,156 @@
+name: Update packages
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Resolve latest versions
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          AB_AV1_TAG=$(gh release view --repo alexheretic/ab-av1 --json tagName --jq .tagName)
+          VMAGENT_TAG=$(gh release view --repo VictoriaMetrics/VictoriaMetrics --json tagName --jq .tagName)
+          AB_AV1_VERSION=${AB_AV1_TAG#v}
+          VMAGENT_VERSION=${VMAGENT_TAG#v}
+
+          echo "Latest ab-av1: $AB_AV1_VERSION"
+          echo "Latest vmagent: $VMAGENT_VERSION"
+
+          {
+            echo "AB_AV1_TAG=$AB_AV1_TAG"
+            echo "AB_AV1_VERSION=$AB_AV1_VERSION"
+            echo "VMAGENT_TAG=$VMAGENT_TAG"
+            echo "VMAGENT_VERSION=$VMAGENT_VERSION"
+          } >> "$GITHUB_ENV"
+
+          # The index is rebuilt from scratch on every run, so every package must be
+          # built in this job. Scheduled runs skip when the published index is current.
+          if [ "$GITHUB_EVENT_NAME" != "schedule" ]; then
+            exit 0
+          fi
+
+          BASE_URL="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}"
+
+          published() {
+            local arch=$1 package=$2 version=$3
+            curl -fsSL "$BASE_URL/dists/stable/main/binary-$arch/Packages" \
+              | awk -v p="$package" -v v="$version" \
+                  '$1 == "Package:" { name = $2 } $1 == "Version:" && name == p && $2 == v { found = 1 } END { exit !found }'
+          }
+
+          if published amd64 ab-av1 "$AB_AV1_VERSION" \
+            && published amd64 vmagent "$VMAGENT_VERSION" \
+            && published arm64 vmagent "$VMAGENT_VERSION"; then
+            echo "Published index is up to date. Exiting."
+            echo "SKIP_DEPLOY=true" >> "$GITHUB_ENV"
+          fi
+
+      - name: Import GPG Key
+        if: env.SKIP_DEPLOY != 'true'
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - name: Install dependencies
+        if: env.SKIP_DEPLOY != 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y reprepro zstd
+          echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list
+          sudo apt-get update
+          sudo apt-get install -y nfpm
+
+      - name: Build ab-av1
+        if: env.SKIP_DEPLOY != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          gh release download "$AB_AV1_TAG" \
+            --repo alexheretic/ab-av1 \
+            --pattern '*x86_64*linux*musl*.tar.zst' \
+            --output ab-av1.tar.zst
+
+          zstd -dc ab-av1.tar.zst | tar -xv
+          chmod +x ab-av1
+
+          ARCH=amd64 VERSION="$AB_AV1_VERSION" nfpm pkg --packager deb --target "ab-av1_${AB_AV1_VERSION}_amd64.deb"
+          reprepro includedeb stable "ab-av1_${AB_AV1_VERSION}_amd64.deb"
+
+          rm ab-av1 ab-av1.tar.zst "ab-av1_${AB_AV1_VERSION}_amd64.deb"
+
+      - name: Build vmagent
+        if: env.SKIP_DEPLOY != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          ASSETS=$(gh release view "$VMAGENT_TAG" --repo VictoriaMetrics/VictoriaMetrics --json assets --jq '.assets[].name')
+
+          build_arch() {
+            local arch=$1
+            local asset
+            asset=$(grep -E "^vmutils-linux-${arch}-v.*\.tar\.gz$" <<< "$ASSETS" | head -n1 || true)
+            if [ -z "$asset" ]; then
+              echo "Unable to find vmutils asset for $arch in release $VMAGENT_TAG"
+              exit 1
+            fi
+
+            gh release download "$VMAGENT_TAG" --repo VictoriaMetrics/VictoriaMetrics --pattern "$asset"
+
+            local tmpdir
+            tmpdir=$(mktemp -d)
+            tar -xzf "$asset" -C "$tmpdir"
+
+            local bin
+            bin=$(find "$tmpdir" -type f -name vmagent-prod -perm -111 | head -n1)
+            if [ -z "$bin" ]; then
+              echo "vmagent-prod binary not found inside $asset"
+              exit 1
+            fi
+
+            cp "$bin" ./vmagent
+            chmod +x ./vmagent
+
+            ARCH="$arch" VERSION="$VMAGENT_VERSION" nfpm pkg --config nfpm-vmagent.yaml --packager deb --target "vmagent_${VMAGENT_VERSION}_${arch}.deb"
+            reprepro includedeb stable "vmagent_${VMAGENT_VERSION}_${arch}.deb"
+
+            rm -rf "$tmpdir" "$asset" "vmagent_${VMAGENT_VERSION}_${arch}.deb" ./vmagent
+          }
+
+          build_arch amd64
+          build_arch arm64
+
+      - name: Deploy to GitHub Pages
+        if: env.SKIP_DEPLOY != 'true'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          keep_files: true
+          exclude_assets: '.github,nfpm.yaml,nfpm-vmagent.yaml,private.key,.gitattributes,conf,db'

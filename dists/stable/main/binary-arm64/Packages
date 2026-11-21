@@ -8,8 +8,8 @@ Priority: optional
 Section: net
 Filename: pool/main/v/vmagent/vmagent_1.156.0_arm64.deb
 Size: 21953574
-SHA256: cdeb6594f45dea5a8377d601d527a794439ead61b12384ae25c7ce8162bac61b
-SHA1: 8ab95e1ae533ed4a2df03d1f3f820ec5150ca83b
-MD5sum: 7bd38d0d6859a95621dedf0f7d4a71b4
+SHA256: 6ce96e9ab78d7469dc5209c908341e08dd05a8663bf8053cb4a1b90e6d954498
+SHA1: e08326fc81b2c919d4005f877bf055a39ef98091
+MD5sum: 1b248d59d131a642e2a589a5dc128ca4
 Description: VictoriaMetrics vmagent (Unofficial build)
 
